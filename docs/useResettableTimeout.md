@@ -1,4 +1,4 @@
-# `useResettableTimoue`
+# `useResettableTimeout`
 
 React hook generates a resettable setTimeout and only reset when reset is invoked.
 
