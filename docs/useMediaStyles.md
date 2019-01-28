@@ -1,26 +1,34 @@
 # `useMediaStyles`
 
-React hook generates a resettable setTimeout and only reset when reset is invoked.
+React hook returns a style object from specified media queries and styles.
+
+Style changes due to viewport size.
 
 ## Usage
 
 ```jsx
 import { useState } from 'react';
-import useResettableTimeout from 'src/useResettableTimeout';
+import useMediaStyles from 'src/useMediaStyles';
 
 const Demo = () => {
-  const [ready, setReady] = useState(true);
-  const reset = useResettableTimeout(1000, setReady, false);
-  return <div onClick={reset}>Are you ready? {ready ? 'Yes' : 'No'}</div>;
+  const style = useMediaStyles({
+    '(max-width: 600px)': {
+      background: 'red',
+    },
+    '(min-width: 601px)': {
+      background: 'blue',
+    },
+  });
+  return <div style={style} />;
 };
 ```
 
 ## Reference
 
 ```jsx
-useResettableTimeout(ms, callback, args);
+useMediaStyles(mediaQueryOptions);
 ```
 
-- `ms` &mdash; time in milliseconds to invoke callback, default to `0`.
-- `callback` &mdash; function to invoke after timeout.
-- `args` &mdash; arguments for the callback, default to `[]`.
+- `mediaQueryOptions`
+  - `mediaQuery` &mdash; a media query string
+    - `style` &mdash; a style object
